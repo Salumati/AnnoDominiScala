@@ -1,7 +1,9 @@
 package module
 
-//import
+import org.scalatest.wordspec.AnyWordSpec
 
-class PlayerSpec {
-
+class PlayerSpec extends AnyWordSpec{
+  "A Player" should {
+    "have a name" in {
+    }  }
 }
