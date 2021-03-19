@@ -19,7 +19,7 @@ array1.drop(2)  // retruns Array(1,4,5)
 array1 // the array itself doesn't actually change!!!
 array1.takeRight(3)  // this is the same as array1.drop(2)
 
-// tail, returns everything after the last element
+// tail, returns everything after the first element
 array1.tail // Array(7,1,4,5)
 // init is the oposite of tail, it gives you everytihng bevore the last element
 array1.init  // Array(1,7,1,4)
