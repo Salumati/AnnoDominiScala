@@ -15,14 +15,27 @@ val deck = createRandomDeck()
 
 deck.drawCard
 deck.drawCard(3)
+val deck2 = deck.shuffle
+
+val list = deck.tail
 
 
-case class Player(name:String = "Player", hand:List[Card])
+
+case class Player(name:String = "Player", hand:List[Card]){
+  def showHand = hand.toString()
+  //def placeCard(n) = hand[n]
+}
+
+val p1 = Player("Player 1", deck.drawCard(3)._1)
 
 case class Table(players:List[Player], table:List[Card], deck:Deck){
+  def showPlayers = players.toString()
+  def showTable = table.toString()
+
 
 }
 
+val table = Table(List(p1), List(deck2.drawCard._1), Deck(deck2.drawCard._2))
 
 
 case class TableGenerator(nrOfPlayers:Int=1, nrOfCards:Int=10){
@@ -47,11 +60,7 @@ val tb = TableGenerator(2)
 tb.genPlayers(deck)
 
 
-val table = tb.createTable
-
-table
-
-
+val table2 = tb.createTable
 
 //val player = Player("Player 1", deck.head)
 
