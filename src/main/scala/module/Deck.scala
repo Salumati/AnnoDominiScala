@@ -10,9 +10,8 @@ case class Deck(cards:List[Card]=Nil) {
   def deckTail: List[Card] = drawCard._2
 
   // these are for easing the creation of table class objects:
-  def playCard: Card = this.deckHead
   def playDeck: Deck = Deck(this.deckTail) // allows to create table object directly, w
 
-
   override def toString: String = cards.map(c => c.toString + "\n").toString()
+  override def clone(): AnyRef = super.clone()
 }
