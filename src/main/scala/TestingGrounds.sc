@@ -28,6 +28,7 @@ val deck = createRandomDeck()
 deck.drawCard
 deck.drawCard(3)
 val deck2 = deck.shuffle
+val deck3 = deck.copy()
 
 val list = deck.deckTail
 

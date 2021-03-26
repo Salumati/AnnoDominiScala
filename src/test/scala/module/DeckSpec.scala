@@ -29,17 +29,25 @@ class DeckSpec extends AnyWordSpec{
       assert(deck.deckTail.isInstanceOf[List[Card]])
       assert(deck.deckTail == deck.cards.tail)
     }
+    "Have a function lenght" in{
+      assert(deck.length.isInstanceOf[Int])
+      assert(deck.length == 10)
+    }
     "Have a function playDeck" in {
       assert(deck.playDeck.isInstanceOf[Deck])
       assert(deck.playDeck.cards == deck.cards.tail)
     }
     "Have a nice Stringrepresentation" in {
       assert(deck.toString.isInstanceOf[String])
-      assert(deck.toString.startsWith("List(text: Card No. 10,\n text: "))
-      assert(deck.toString.endsWith("1)"))
+      assert(deck.toString.startsWith("List(text: Card No. 10\n, text: "))
+      assert(deck.toString.endsWith("1\n)"))
     }
-    "Be cloneable" in {
-      assert(deck.clone() == deck)
+    "Can be copied" in {
+      assert(deck.copy() == deck)
+    }
+    "Have a method equals" in {
+      assert(deck.equals(deck).isInstanceOf[Boolean])
+      assert(deck.equals(deck))
     }
 
   }

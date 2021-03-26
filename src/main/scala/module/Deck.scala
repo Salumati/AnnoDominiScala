@@ -12,6 +12,7 @@ case class Deck(cards:List[Card]=Nil) {
   // these are for easing the creation of table class objects:
   def playDeck: Deck = Deck(this.deckTail) // allows to create table object directly, w
 
+  def length: Int = cards.length
+
   override def toString: String = cards.map(c => c.toString + "\n").toString()
-  override def clone(): AnyRef = super.clone()
 }
