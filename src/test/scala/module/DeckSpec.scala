@@ -16,6 +16,7 @@ class DeckSpec extends AnyWordSpec{
       assert(deck.drawCard._2.isInstanceOf[List[Card]])
       assert(deck.drawCard(4)._1.isInstanceOf[List[Card]])
       assert(deck.drawCard(4)._2.isInstanceOf[List[Card]])
+      assert(deck.drawCard(4)._1.length == 4)
     }
     "Have a function shuffle" in {
       assert(deck != deck.shuffle)

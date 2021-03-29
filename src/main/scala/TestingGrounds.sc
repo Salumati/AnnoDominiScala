@@ -1,62 +1,41 @@
-import module.{Card, Deck}
+import module.{Card, Deck, Deckgenerator, Player}
 
+val deckGen = new Deckgenerator
 
-val c = Card("Card No. " + 1, 1)
-
-def createRandomDeck(noOfCards:Int = 10): Deck ={
-  var list:List[Card] = Nil
-  for (i <- 1 to noOfCards) {
-    list = Card("Card No. " + i, i) :: list
-  }
-  Deck(list)
-}
-
-case class Hand(cards:List[Card]){
-  override def toString: String = {
-    var string = ""
-    for (c <- this.cards) {string + c.toString}
-    string
-  }
-
-  def placeCard(n:Int = 0) = cards(n) // should give a copy of the Hand without n as well
-
-}
-
-
-val deck = createRandomDeck()
-
-deck.drawCard
-deck.drawCard(3)
-val deck2 = deck.shuffle
-val deck3 = deck.copy()
-
-val list = deck.deckTail
-
-case class Player(name:String = "Player", hand:List[Card]){
-  def showHand = hand.toString()
-  def placeCard(n:Int):(Card, Player) = (hand(n), Player(name, hand.diff(List(hand(n)))))
-
-  override def toString: String = name + ":\n" + hand.toString()
-}
+val deck = deckGen.createRandomDeck()
 
 val p1 = Player("Player 1", deck.drawCard(3)._1)
 
-p1.toString
+p1.showHand
 
 case class Table(players:List[Player], table:List[Card], deck:Deck){
-  def showPlayers = players.toString()
-  def showTable = table.toString()
+  def showTable: String = "The bord:\n" + table.toString() + "\n"
+  def showAllPlayers = players.toString() // might not be needed, the other players cards should not be visible
+  def showCurrentPlayer = currentPlayer.toString
+  def showStatus: String =
+    showTable + players.map(p => p.name + ": (" + p.checkNumOfCards + ")\n").toString()
 
+  def currentPlayer: Player = players.head
 
+  /*def placeCard(card: Card, position: Int): List[Card] = {
+    table.splitAt(position)._1 :: List(card) :: table.splitAt(position)._2
+  }*/
 }
 
-val table = Table(List(p1), List(deck2.drawCard._1), Deck(deck2.drawCard._2))
+val table = Table(List(p1), List(deck.drawCard._1), Deck(deck.drawCard._2))
 
-table.toString
+table.showTable
+table.showCurrentPlayer
+table.showStatus
+
+table.table.splitAt(1)
 
 case class TableGenerator(nrOfPlayers:Int=1, nrOfCards:Int=10){
+
+  val deckGen = new Deckgenerator
+
   def createTable = {
-    val deck = createRandomDeck(nrOfCards).shuffle
+    val deck = deckGen.createRandomDeck(nrOfCards).shuffle
     val players = genPlayers(deck)
 
     Table(
