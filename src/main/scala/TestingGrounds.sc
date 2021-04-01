@@ -1,34 +1,24 @@
-import module.{Card, Deck, Deckgenerator, Player}
+import module.{Deck, Deckgenerator, Player, Table}
 
 val deckGen = new Deckgenerator
 
 val deck = deckGen.createRandomDeck()
 
 val p1 = Player("Player 1", deck.drawCard(3)._1)
+val p2 = Player("Susi", deck.drawCard(3)._1)
 
 p1.showHand
+p2.showHand
 
-case class Table(players:List[Player], table:List[Card], deck:Deck){
-  def showTable: String = "The bord:\n" + table.toString() + "\n"
-  def showAllPlayers = players.toString() // might not be needed, the other players cards should not be visible
-  def showCurrentPlayer = currentPlayer.toString
-  def showStatus: String =
-    showTable + players.map(p => p.name + ": (" + p.checkNumOfCards + ")\n").toString()
-
-  def currentPlayer: Player = players.head
-
-  /*def placeCard(card: Card, position: Int): List[Card] = {
-    table.splitAt(position)._1 :: List(card) :: table.splitAt(position)._2
-  }*/
-}
-
-val table = Table(List(p1), List(deck.drawCard._1), Deck(deck.drawCard._2))
+val table = Table(List(p1,p2), List(deck.drawCard(3)._2.head), Deck(deck.drawCard(3)._2.tail))
+val t = Table
 
 table.showTable
-table.showCurrentPlayer
-table.showStatus
+p1.showHand
+table.playerPlacesCard(2, 0)
+table.playerDoubtsCards
+table.getNextPlayer()
 
-table.table.splitAt(1)
 
 case class TableGenerator(nrOfPlayers:Int=1, nrOfCards:Int=10){
 
