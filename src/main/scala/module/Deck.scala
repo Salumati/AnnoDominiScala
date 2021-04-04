@@ -14,5 +14,5 @@ case class Deck(cards:List[Card]=Nil) {
 
   def length: Int = cards.length
 
-  override def toString: String = cards.map(c => "\n" + c.toString).toString().replaceAll("List", "Deck")
+  override def toString: String = cards.map(c => "\n" + c.toString).toString().replaceAll("List", "Deck").replaceAll(",", "")
 }

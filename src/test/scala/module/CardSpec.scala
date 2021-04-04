@@ -20,7 +20,7 @@ class CardSpec extends AnyWordSpec {
       assert(card.text == "A Card Text")
     }
     "Have a Stringreperesentation" in {
-      assert(card.toString == "text: A Card Text")
+      assert(card.toString == "text: A Card Text\n")
     }
     "Have a reveal function" in {
       assert(card.reveal == "year: 10\nCardText: A Card Text")
