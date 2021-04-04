@@ -11,6 +11,7 @@ object AnnoDomini {
     var input: String = ""
 
     // ask for prefered deck (start with default random deck)
+    println("")
 
     // generate deck
 

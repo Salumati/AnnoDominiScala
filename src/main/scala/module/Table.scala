@@ -32,7 +32,7 @@ case class Table(players:List[Player], table:List[Card], deck:Deck) {
     // allows for current player to be changed (e.g. placed a card)
     players.tail ::: List(changedCurPlayer)
   }
-  def chanvePrevPlayer(changedPlayer:Player): List[Player] = {
+  def changePrevPlayer(changedPlayer:Player): List[Player] = {
     players.splitAt(1)._1 ::: List(changedPlayer)  ::: players.splitAt(2)._2
   }
 
@@ -58,7 +58,7 @@ case class Table(players:List[Player], table:List[Card], deck:Deck) {
       val newDeck = playerDrawsCard(previousPlayer, 3)._2
       val changedPlayer = playerDrawsCard(previousPlayer, 3)._1
       Table(
-        chanvePrevPlayer(changedPlayer),
+        changePrevPlayer(changedPlayer),
         List(newDeck.deckHead), // new table, with 1 card on it
         Deck(newDeck.deckTail) // new deck, with the drawn cards removed
       )

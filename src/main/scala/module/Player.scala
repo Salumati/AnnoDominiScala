@@ -9,5 +9,5 @@ case class Player(name:String = "Player", hand:List[Card]){
 
   def hasWon: Boolean = hand.isEmpty
 
-  override def toString: String = name + ":\n" + hand.toString()
+  override def toString: String = name + ":\n" + hand.toString().replaceAll("List", "") + "\n"
 }
