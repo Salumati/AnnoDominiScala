@@ -1,8 +1,17 @@
-import java.util.Scanner
-import module._
+//import java.util.Scanner
+
+import controller.Controller
+import module.TableGenerator
+import view.Tui
+
+import scala.io.StdIn.readLine
 object AnnoDomini {
 
-  val scanner = new Scanner(System.in)
+  val controller = new Controller(TableGenerator().createTable)
+  val tui = new Tui(controller)
+  controller.notifyObservers()
+
+  // val scanner = new Scanner(System.in)
 
   def main(args:Array[String]):Unit = {
 
@@ -11,32 +20,33 @@ object AnnoDomini {
     var input: String = ""
 
     // ask for prefered deck (start with default random deck)
-    println("")
+
 
     // generate deck
 
     // ask for amount of players
     println("how many players?")
-    val tg = TableGenerator(3, 40)
+    input = readLine()
+    controller.createTestTable(input.toInt)
     // if only one player: switch into Singleplayer mode
     // not implemented yet
-
-    // generate players
-    var table = tg.createTable
 
     do{
 
       // show table + current player
-      print(table.showTable + table.showCurrentPlayer)
-
-
-      // ask current player to place card
       println("what will you do?" +
         "\n p = place card " +
         "\n d = doubt" +
         "\n q = quit game")
 
-      input = scanner.next()
+      input = readLine()
+      println("input is: " + input)
+      tui.processInputLine(input)
+
+      /*
+      // ask current player to place card
+
+
       println("input is: " + input)
 
       // place card
@@ -61,9 +71,8 @@ object AnnoDomini {
       if(table.playerWon) {
         println("player " + table.previousPlayer.name + " has won!")
         return
-      }
+      }*/
     }while(input != "q")
-    println("End game")
   }
 
 

@@ -1,14 +1,15 @@
 package controller
-import module.{Deck, Table, TableGenerator}
+import module.{Table, TableGenerator}
 import util.Observable
 
 class Controller(var table:Table) extends Observable{
-  def createTestTable(noOfPlayers:Int, deck:Deck): Unit = {
+  def createTestTable(noOfPlayers:Int): Unit = {
     val tb = TableGenerator(noOfPlayers, 40)
     table = tb.createTable
+    notifyObservers()
   }
 
-  def tableToString: String = table.toString
+  def tableToString: String = table.showTable + table.showCurrentPlayer
 
   def placeCard(card:Int, place:Int): Unit ={
     table = table.playerPlacesCard(card, place)
