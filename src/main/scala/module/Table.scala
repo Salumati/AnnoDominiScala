@@ -14,6 +14,8 @@ case class Table(players:List[Player], table:List[Card], deck:Deck) {
 
   def getNumOfPlayers: Int = players.length
 
+  def playerWon: Boolean = previousPlayer.hasWon
+
   def allCardsInOrder: Boolean = {
     val sortedList = table.sortWith(_.year < _.year)
     table == sortedList

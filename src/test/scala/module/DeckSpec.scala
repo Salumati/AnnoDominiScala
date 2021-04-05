@@ -40,7 +40,11 @@ class DeckSpec extends AnyWordSpec{
     }
     "Have a nice Stringrepresentation" in {
       assert(deck.toString.isInstanceOf[String])
-      assert(deck.toString.startsWith("Deck(\ntext: Card No. 10\n\ntext: "))
+      assert(deck.toString.startsWith("Deck(" +
+        "\ntext: Card No. 10" +
+        "\n" +
+        "\n" +
+        "text: "))
       // Todo: change double nextLine to single nextLine
       assert(deck.toString.endsWith("1\n)"))
     }

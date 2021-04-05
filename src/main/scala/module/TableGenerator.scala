@@ -1,7 +1,6 @@
 package module
 
-case class TableGenerator(nrOfPlayers:Int=1, nrOfCards:Int=10){
-
+case class TableGenerator(nrOfPlayers:Int=1, nrOfCards:Int=30){
   val deckGen = new Deckgenerator
 
   def createTable: Table = {
