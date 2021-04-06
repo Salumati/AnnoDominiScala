@@ -1,5 +1,5 @@
 package controller
-import module.{Table, TableGenerator}
+import module.{Table, TableGenerator, Card}
 import util.Observable
 
 class Controller(var table:Table) extends Observable{
@@ -21,9 +21,12 @@ class Controller(var table:Table) extends Observable{
     notifyObservers()
   }
 
-  def confirmWinner: Boolean = {
-    notifyObservers()
-    table.playerWon
+  def confirmWinner: Any = {
+    if(table.playerWon){
+      "congratulations, player: " + table.previousPlayer + " has won!"
+    }
   }
+
+  def getCard(index:Int): Card = table.takePlayerCard(index)._1
 
 }

@@ -34,44 +34,13 @@ object AnnoDomini {
     do{
 
       // show table + current player
-      println("what will you do?" +
-        "\n p = place card " +
-        "\n d = doubt" +
-        "\n q = quit game")
-
+      tui.giveOptions()
       input = readLine()
       println("input is: " + input)
       tui.processInputLine(input)
 
-      /*
-      // ask current player to place card
-
-
-      println("input is: " + input)
-
-      // place card
-      if(input == "p") {
-        println("place Card:" +
-          "\n which card?" )
-        input = scanner.next()
-
-        println("You chose the Card: " +
-          table.takePlayerCard(input.toInt)._1 +
-          "\n where to place Card?" )
-        table = table.playerPlacesCard(input.toInt, scanner.nextInt())
-
-        println("Card has been placed:")
-        println(table.showTable)
-      }
-      if(input == "d") {
-        println("doubt:")
-        table = table.playerDoubtsCards
-      }
       // check if player has won (no more cards in players hand)
-      if(table.playerWon) {
-        println("player " + table.previousPlayer.name + " has won!")
-        return
-      }*/
+      tui.confirmWinner()
     }while(input != "q")
   }
 
