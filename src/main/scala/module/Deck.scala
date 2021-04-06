@@ -4,6 +4,10 @@ import scala.util.Random
 case class Deck(cards:List[Card]=Nil) {
   def drawCard: (Card, List[Card]) = (cards.head, cards.tail)
   def drawCard(n: Int) : (List[Card], List[Card]) = cards.splitAt(n)
+
+  def addCard(c:Card): Deck = Deck(c :: cards)
+  def addCard(d:Deck): Deck = Deck(cards ::: d.cards)
+
   def shuffle: Deck = Deck(Random.shuffle(cards))
 
   def deckHead: Card = drawCard._1
@@ -14,5 +18,5 @@ case class Deck(cards:List[Card]=Nil) {
 
   def length: Int = cards.length
 
-  override def toString: String = cards.map(c => "\n" + c.toString).toString().replaceAll("List", "Deck").replaceAll(",", "")
+  override def toString: String = cards.map(c => c.toString).toString().replaceAll("List", "Deck").replaceAll(",", "")
 }

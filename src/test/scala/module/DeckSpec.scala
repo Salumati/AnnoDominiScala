@@ -5,18 +5,24 @@ import org.scalatest.wordspec.AnyWordSpec
 class DeckSpec extends AnyWordSpec{
   val deckGen:Deckgenerator = new Deckgenerator
   val deck:Deck = deckGen.createRandomDeck()
-  val card:Card = Card("Card No. 10", 10)
+  val card:Card = Card("Card No. 0", 0)
   "A Deck" should{
     "Have a value cards, which is a List of Card" in {
       assert(deck.cards.isInstanceOf[List[Card]])
     }
     "Have a function draw Card" in {
       assert(deck.drawCard._1.isInstanceOf[Card])
-      assert(deck.drawCard._1 == card)
+      assert(deck.drawCard._1 == deck.cards.head)
       assert(deck.drawCard._2.isInstanceOf[List[Card]])
+
       assert(deck.drawCard(4)._1.isInstanceOf[List[Card]])
       assert(deck.drawCard(4)._2.isInstanceOf[List[Card]])
       assert(deck.drawCard(4)._1.length == 4)
+    }
+    "Have a function addCard" in {
+      assert(deck.addCard(card).cards.contains(card))
+      assert(deck.addCard(card).length == deck.length + 1)
+      assert(deck.addCard(deck).length == deck.length*2)
     }
     "Have a function shuffle" in {
       assert(deck != deck.shuffle)
@@ -24,7 +30,6 @@ class DeckSpec extends AnyWordSpec{
     }
     "Have a function deckHead" in {
       assert(deck.deckHead.isInstanceOf[Card])
-      assert(deck.deckHead == card)
     }
     "Have a function deckTail" in {
       assert(deck.deckTail.isInstanceOf[List[Card]])
@@ -40,11 +45,7 @@ class DeckSpec extends AnyWordSpec{
     }
     "Have a nice Stringrepresentation" in {
       assert(deck.toString.isInstanceOf[String])
-      assert(deck.toString.startsWith("Deck(" +
-        "\ntext: Card No. 10" +
-        "\n" +
-        "\n" +
-        "text: "))
+      assert(deck.toString.startsWith("Deck(" ))
       // Todo: change double nextLine to single nextLine
       assert(deck.toString.endsWith("1\n)"))
     }
