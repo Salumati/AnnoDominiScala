@@ -32,7 +32,6 @@ object AnnoDomini {
     // not implemented yet
 
     do{
-
       // show table + current player
       tui.giveOptions()
       input = readLine()

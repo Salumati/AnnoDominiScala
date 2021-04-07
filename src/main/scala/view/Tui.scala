@@ -16,7 +16,6 @@ class Tui(controller: Controller) extends Observer{
       case "p" => this.placeCard()
     }
   }
-
   def giveOptions(): Unit = {
     println("what will you do?" +
       "\n p = place card " +

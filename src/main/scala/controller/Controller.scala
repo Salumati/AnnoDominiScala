@@ -12,7 +12,7 @@ class Controller(var table:Table) extends Observable{
   def tableToString: String = table.showTable + table.showCurrentPlayer
 
   def placeCard(card:Int, place:Int): Unit ={
-    table = table.playerPlacesCard(card, place)
+    table = table.playerPlacesCard(card) (place)
     notifyObservers()
   }
 
