@@ -2,7 +2,8 @@ package module
 
 case class Card(text: String, year: Int) {
   def showYear:String = year.toString
-  def reveal:String = "year: " + showYear + "\nCardText: " + text
+  def reveal:String = "year: " + showYear + " " +  this.toString
 
-  override def toString: String = "text: " + text + "\n"
+  override def toString: String = "[" + text + "]\n" +
+    ","
 }

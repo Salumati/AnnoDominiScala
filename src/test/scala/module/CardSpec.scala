@@ -6,13 +6,16 @@ import org.scalatest.wordspec.AnyWordSpec
 class CardSpec extends AnyWordSpec {
   val card:Card = Card("A Card Text", 10)
   "A Card" should  {
+    "be of its own kind" in{
+      assert(card.isInstanceOf[Card])
+    }
     "have a year" which{
       "is an Integeger" in {
         assert(card.year.isInstanceOf[Int])
         assert(card.year == 10)
       }
       "has a String representation" in {
-        assert(card.year.toString == "10")
+        assert(card.showYear == "10")
       }
     }
     "Have a text" in{
@@ -20,10 +23,10 @@ class CardSpec extends AnyWordSpec {
       assert(card.text == "A Card Text")
     }
     "Have a Stringreperesentation" in {
-      assert(card.toString == "text: A Card Text\n")
+      assert(card.toString == "[A Card Text]\n")
     }
     "Have a reveal function" in {
-      assert(card.reveal == "year: 10\nCardText: A Card Text")
+      assert(card.reveal == "year: 10 [A Card Text]\n")
     }
   }
 }
