@@ -9,5 +9,3 @@ libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.5"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.5" % "test"
 
 // travis (may not be needed)
-addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.5.1")
-addSbtPlugin("org.scoverage" % "sbt-coveralls" % "1.2.7")
