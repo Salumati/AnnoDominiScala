@@ -47,7 +47,7 @@ class DeckSpec extends AnyWordSpec{
       assert(deck.toString.isInstanceOf[String])
       assert(deck.toString.startsWith("Deck(" ))
       // Todo: change double nextLine to single nextLine
-      assert(deck.toString.endsWith("1\n)"))
+      assert(deck.toString.endsWith("1]\n)"))
     }
     "Can be copied" in {
       assert(deck.copy() == deck)
