@@ -1,6 +1,6 @@
 name := "AnnoDominiScala"
 
-version := "0.1"
+version := "1.0"
 
 scalaVersion := "2.13.5"
 
@@ -8,3 +8,5 @@ scalaVersion := "2.13.5"
 libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.5"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.5" % "test"
 
+// apparently travis doesn't need dependencies
+// because it downloads them automatically?

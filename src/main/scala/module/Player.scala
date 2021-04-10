@@ -1,6 +1,7 @@
 package module
 
 case class Player(name:String = "Player", hand:List[Card]){
+  // TODO: get coverage to 100%
   def showHand: String = this.toString()
   def checkNumOfCards: Int = hand.length
 
@@ -9,5 +10,5 @@ case class Player(name:String = "Player", hand:List[Card]){
 
   def hasWon: Boolean = hand.isEmpty
 
-  override def toString: String = name + ":\n" + hand.toString().replaceAll("List", "") + "\n"
+  override def toString: String = name + ":\n" + hand.toString().replaceAll("List", "")
 }
