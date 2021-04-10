@@ -1,18 +1,18 @@
 package module
 
-case class TableGenerator(nrOfPlayers:Int=1, nrOfCards:Int=30){
+case class TableGenerator(noOfPlayers:Int=1, noOfCards:Int=30, CardsPerPlayer: Int = 5){
   val deckGen = new Deckgenerator
 
   def createTable: Table = {
-    val deck = deckGen.createRandomDeck(nrOfCards).shuffle
-    val players = genPlayers(nrOfPlayers, deck)
+    val deck = deckGen.createRandomDeck(noOfCards).shuffle
+    val players = genPlayers(deck, noOfPlayers)
     Table(
       players,
-      List(deck.drawCard(nrOfPlayers*5)._2.head), Deck(deck.drawCard(nrOfPlayers*5)._2.tail)
+      List(deck.drawCard(noOfPlayers*CardsPerPlayer)._2.head), Deck(deck.drawCard(noOfPlayers*CardsPerPlayer)._2.tail)
     )}
 
-  def genPlayers(playerNo:Int, deck:Deck, n:Int = nrOfPlayers):List[Player] = {
-    if(n == 1) List(Player("Player " + n, deck.drawCard(4)._1))
-    else List(Player("Player " + n, deck.drawCard(4)._1)) ::: genPlayers(playerNo-1, Deck(deck.drawCard(4)._2), n-1)
+  def genPlayers(deck:Deck, n:Int = noOfPlayers):List[Player] = {
+    if(n == 1) List(Player("Player " + n, deck.drawCard(CardsPerPlayer)._1))
+    else List(Player("Player " + n, deck.drawCard(CardsPerPlayer)._1)) ::: genPlayers(Deck(deck.drawCard(CardsPerPlayer)._2), n-1)
   }
 }
