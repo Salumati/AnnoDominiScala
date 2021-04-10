@@ -8,5 +8,6 @@ scalaVersion := "2.13.5"
 libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.5"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.5" % "test"
 
-// apparently travis doesn't need dependencies
-// because it downloads them automatically?
+// travis
+addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.5.1")
+addSbtPlugin("org.scoverage" % "sbt-coveralls" % "1.2.7")
