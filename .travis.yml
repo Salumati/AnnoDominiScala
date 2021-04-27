@@ -5,7 +5,7 @@ scala:
 script:
   - sbt clean coverage test coverageReport
 
-# after_success:
-#  - sbt coverageReport coveralls
+after_success:
+  - sbt coverageReport coveralls
 # TODO: the line above has been copied from Marcos example but causes errors.
 # find out what is wrong
